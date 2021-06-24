@@ -1,0 +1,27 @@
+---
+- name: Reset Dock to Defaults
+  osx_defaults:
+    domain: com.apple.dock
+    state: absent
+    key: .
+  notify:
+    - Restart Dock
+  tags:
+    - dock
+
+- name: Clear Dock
+  shell: bash -lc 'dockutil --remove all; sleep 5'
+  changed_when: true
+  notify:
+    - Restart Dock
+  tags:
+    - dock
+
+- name: Add Custom Dock Content
+  shell: "sleep 5; bash -lc 'dockutil {{ item }}'"
+  changed_when: true
+  with_items: "{{ dock_customizations }}"
+  notify:
+    - Restart Dock
+  tags:
+    - dock

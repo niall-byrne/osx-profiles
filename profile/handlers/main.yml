@@ -5,3 +5,9 @@
   command: "bash -lc 'source {{ asdf_source }}; asdf reshim python'"
   args:
     chdir: "{{ asdf_user_home }}"
+
+- name: Restart Dock
+  command: killall Dock
+
+- name: Restart SystemUIServer
+  command: killall SystemUIServer

@@ -1,0 +1,3 @@
+---
+- name: Perform Compatibility Test
+  include_tasks: "tasks/pre_install/compatibility.yml"

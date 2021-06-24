@@ -1,13 +1,23 @@
 ---
 roles:
-  - name: elliotweiser.osx-command-line-tools
+  - src: elliotweiser.osx-command-line-tools
     version: 2.3.0
-  - name: osx_provisioner.homebrew_retry
+  - src: niall_byrne.ansible_role_osx_defaults
+    version: master
+  - src: osx_provisioner.asdf
+    version: v0.2.1
+  - src: osx_provisioner.clamav
+    version: v0.2.1
+  - src: osx_provisioner.downloader
+    version: v0.1.2
+  - src: osx_provisioner.homebrew_retry
     version: v0.3.0
-  - name: osx_provisioner.asdf
-    version: v0.2.1
-  - name: osx_provisioner.clamav
-    version: v0.2.1
+  - src: osx_provisioner.homeshick
+    version: v0.1.1
+  - src: osx_provisioner.jumpcloud
+    version: v0.1.2
+  - src: osx_provisioner.symlinks
+    version: v0.1.2
 collections:
   - name: geerlingguy.mac
     version: 1.1.2
