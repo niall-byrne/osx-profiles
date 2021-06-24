@@ -1,0 +1,29 @@
+---
+- name: Install Mas Legacy Taps
+  become: True
+  become_user: "{{ brew_user }}"
+  community.general.homebrew_tap:
+    name: "mas-cli/tap"
+    state: present
+  retries: "{{ brew_retries }}"
+  delay: 3
+  register: install_taps
+  until: install_taps is not failed
+  when: ansible_distribution_version is version('10.15', '<')
+
+- name: Install Mas Legacy Package
+  become: True
+  become_user: "{{ brew_user }}"
+  community.general.homebrew:
+    name: "mas-cli/tap/mas"
+    state: "{{ brew_install_state }}"
+  retries: "{{ brew_retries }}"
+  delay: 3
+  register: install_apps
+  until: install_apps is not failed
+  when: ansible_distribution_version is version('10.15', '<')
+
+- name: Install Apple Store Apps on Compatible Systems
+  include_role:
+    name: "geerlingguy.mac.mas"
+  when: ansible_distribution_version is version('10.14', '>')
