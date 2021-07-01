@@ -8,3 +8,9 @@ download_retries: 3
 download_remote_urls:
   - url: https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/Scarlett%20MixControl-1.10_0.dmg
     name: MixControl-1.10_0.dmg
+  - url: https://a.phcdn.se/Reason10/Reason_1041_d4-Stable_164_10.dmg
+    name: Reason_1041_d4-Stable_164_10.dmg
+  - url: https://www.sws-extension.org/download/featured/sws-2.12.1.3-Darwin-i386.dmg
+    name: sws-2.12.1.3-Darwin-i386.dmg
+  - url: https://www.sws-extension.org/download/featured/sws-2.12.1.3-Darwin-x86_64.dmg
+    name: sws-2.12.1.3-Darwin-x86_64.dmg

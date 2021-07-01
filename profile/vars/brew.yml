@@ -8,56 +8,29 @@ brew_user: "{{ lookup('env', 'USER') }}"
 brew_retries: 3
 
 brew_packages:
-  - awscli
   - bash
   - curl
   - coreutils
   - dockutil
   - fswatch
   - gpg
-  - hadolint
   - htop
   - jq
   - mtr
   - nmap
   - openssl
-  - pam-u2f
-  - protobuf
-  - rename
-  - shellcheck
-  - telnet
-  - tig
+  - portaudio
   - tmux
   - wget
 brew_casks:
-  - dbeaver-community
-  - disk-inventory-x
-  - docker
-  - google-chrome  # 1password prefers this to be installed in /Applications
-  - pencil
-  - pycharm-ce
-  - slack
-  - visual-studio-code
-  - windscribe
+  - ableton-live-lite
+  - blackhole-2ch
+  - google-chrome
+  - musescore
+  - native-access
 
-brew_targeted_casks_location: "{{ shared_partition_name }}/Shared Applications"
+brew_targeted_casks_location: "{{ shared_partition_name }}/Applications"
 brew_targeted_casks:
-  - appcleaner
-  - cyberduck
-  - disk-inventory-x
-  - flux
-  - iterm2
-  - keybase
-  - keepassxc
-  - notion
-  - onyx
-  - pester
-  - shiftit
-  - shuttle
-  - spotify
-  - textmate
-  - the-unarchiver
-  - toggl-track
-  - transmission
-  - windscribe
-  - zoom
+  - audacity
+  - reaper
+  - waves-central
