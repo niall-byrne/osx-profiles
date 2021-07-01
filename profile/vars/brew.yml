@@ -51,6 +51,7 @@ brew_targeted_casks:
   - keepassxc
   - notion
   - onyx
+  - pester
   - shiftit
   - shuttle
   - spotify
