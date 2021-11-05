@@ -1,0 +1,8 @@
+---
+# tasks/post_install/ethernet.yml
+
+allow_remote_access: "{{ lookup('env', 'ALLOW_REMOTE_ACCESS') }}"
+
+en0_address: "{{ lookup('env', 'EN0_LOCAL_ADDR') }}"
+en0_subnet_mask: "{{ lookup('env', 'EN0_LOCAL_SUBNET_MASK') }}"
+en0_remote_address: "{{ lookup('env', 'EN0_REMOTE_ADDR') }}"

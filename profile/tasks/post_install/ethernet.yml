@@ -1,0 +1,37 @@
+---
+# Configure the ethernet interface to allow for remote access
+
+- name: Read Network Configuration
+  ansible.builtin.command: networksetup -getinfo Ethernet
+  register: en0_config # noqa no-changed-when
+
+- name: Read Packet Filter Status
+  become: True
+  ansible.builtin.command: pfctl -s info
+  register: pf_status # noqa no-changed-when
+
+- name: Reorder Network Interfaces
+  ansible.builtin.command: networksetup -ordernetworkservices "Wi-Fi" "Ethernet" "Bluetooth PAN" "Thunderbolt Bridge"
+  when: "en0_address not in en0_config.stdout"
+
+- name: Configure Ethernet Address
+  ansible.builtin.command: networksetup -setmanual "Ethernet" {{ en0_address }} {{ en0_subnet_mask }}
+  when: "en0_address not in en0_config.stdout"
+
+- name: Configure Packet Filter
+  become: True
+  ansible.builtin.blockinfile:
+    path: /etc/pf.conf
+    block: |
+      block return in proto tcp from any to any port 22
+      block return in proto tcp from any to any port 5900
+      pass in inet proto tcp from {{ en0_remote_address }} to any no state
+  register: pf_config
+  when: "allow_remote_access == '1'"
+  notify:
+    - "Reload Packet Filter"
+
+- name: Enable Packet Filter
+  become: True
+  ansible.builtin.command: pfctl -e
+  when: "'tatus: disabled' in pf_status.stdout"

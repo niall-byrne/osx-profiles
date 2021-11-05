@@ -8,8 +8,8 @@ asdf_plugins:
   - name: "golang"
     repository: ""
     versions:
-      - 1.14.7
-    global: 1.14.7
+      - 1.17.3
+    global: 1.17.3
   - name: "helm"
     repository: ""
     versions:
@@ -18,20 +18,20 @@ asdf_plugins:
   - name: "kubectl"
     repository: ""
     versions:
-      - 1.21.1
-    global: 1.21.1
+      - 1.22.3
+    global: 1.22.3
   - name: "minikube"
     repository: ""
     versions:
-      - 1.20.0
-    global: 1.20.0
+      - 1.23.2
+    global: 1.23.2
   - name: "python"
     repository: ""
     versions:
       - 2.7.18
-      - 3.7.10
-      - 3.8.10
-    global: 3.8.10
+      - 3.7.12
+      - 3.8.12
+    global: 3.8.12
   - name: "ruby"
     repository: ""
     versions:
@@ -40,8 +40,8 @@ asdf_plugins:
   - name: "nodejs"
     repository: ""
     versions:
-      - 14.15.0
-    global: 14.15.0
+      - 14.18.1
+    global: 14.18.1
   - name: "terraform"
     repository: ""
     versions:
@@ -49,4 +49,5 @@ asdf_plugins:
       - 0.12.29
       - 0.13.0
       - 0.14.0
-    global: 0.12.29
+      - 1.0.10
+    global: 1.0.10

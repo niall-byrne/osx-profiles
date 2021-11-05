@@ -1,4 +1,7 @@
 ---
+- name: Configure Ethernet
+  include_tasks: "post_install/ethernet.yml"
+
 - name: Configure fstab
   include_tasks: "post_install/fstab.yml"
 

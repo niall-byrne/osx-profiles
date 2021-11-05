@@ -11,3 +11,7 @@
 
 - name: Restart SystemUIServer
   command: killall SystemUIServer
+
+- name: Reload Packet Filter
+  become: True
+  command: pfctl -f /etc/pf.conf
