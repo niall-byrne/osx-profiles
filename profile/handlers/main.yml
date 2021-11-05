@@ -1,6 +1,6 @@
 ---
 - name: Reshim asdf
-  become: True
+  become: true
   become_user: "{{ asdf_user }}"
   command: "bash -lc 'source {{ asdf_source }}; asdf reshim python'"
   args:
@@ -11,3 +11,22 @@
 
 - name: Restart SystemUIServer
   command: killall SystemUIServer
+
+- name: Globally Enable Firewall
+  become: true
+  command: /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+  listen: "Enable Firewall"
+
+- name: Enable Stealth Mode
+  become: true
+  command: /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+  listen: "Enable Firewall"
+
+- name: Enable Packet Filter
+  become: true
+  community.general.launchd:
+    name: "user.pfctl"
+    enabled: true
+    state: started
+    force_stop: yes
+  listen: "Enable Firewall"
