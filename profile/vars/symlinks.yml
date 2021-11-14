@@ -1,13 +1,23 @@
 ---
 # osx_provisioner.symlinks
 
-shared_partition_name: "{{ lookup('env', 'SHARED_DISK') }}"
+audio_partition_name: "{{ lookup('env', 'AUDIO_PARTITION') }}"
 
 symlinks_user: "{{ lookup('env', 'USER') }}"
 symlinks:
-  - link: "/Applications/__Shared__"
-    target: "{{ shared_partition_name }}/Shared\ Applications/"
-  - link: "/Users/{{ symlinks_user }}/iCloud"
-    target: "/Users/{{ symlinks_user }}/Library/Mobile Documents/com~apple~CloudDocs"
-  - link: "/Users/{{ symlinks_user }}/workspace"
-    target: "/Volumes/Code/Code"
+  - link: "/Users/{{ symlinks_user }}/audio"
+    target: "{{ audio_partition_name }}"
+  - link: "/Users/{{ symlinks_user }}/Music/Ableton"
+    target: "{{ audio_partition_name }}/Application_Data/Ableton"
+  - link: "/Users/{{ symlinks_user }}/Music/Propellerhead Content"
+    target: "{{ audio_partition_name }}/Application_Data/Propellerhead Content"
+  - link: "/Users/{{ symlinks_user }}/Music/NI"
+    target: "{{ audio_partition_name }}/Application_Data/NI"
+  - link: "/Applications/Audio/Native Instruments"
+    target: "{{ audio_partition_name }}/Application_Data/NI/Native Instruments"
+  - link: "/Users/{{ symlinks_user }}/Music/Plugins/AU"
+    target: "/Library/Audio/Plug-Ins/Components"
+  - link: "/Users/{{ symlinks_user }}/Music/Plugins/VST"
+    target: "/Library/Audio/Plug-Ins/VST"
+  - link: "/Users/{{ symlinks_user }}/Music/Plugins/VST3"
+    target: "/Library/Audio/Plug-Ins/VST3"

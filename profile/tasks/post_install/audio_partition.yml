@@ -1,0 +1,39 @@
+---
+# Set up Partition for working with Audio
+
+- name: Create Partition Folders
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ symlinks_user }}"
+    mode: "0755"
+    state: "directory"
+  loop:
+    - "{{ audio_partition_name }}/Projects"
+    - "{{ audio_partition_name }}/Samples"
+    - "{{ audio_partition_name }}/Patches"
+  tags:
+    - audio
+
+- name: Create Partition Application_Data Folder
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ symlinks_user }}"
+    mode: "0755"
+    state: "directory"
+  loop:
+    - "{{ audio_partition_name }}/Application_Data/Ableton"
+    - "{{ audio_partition_name }}/Application_Data/Propellerhead Content"
+    - "{{ audio_partition_name }}/Application_Data/Reason"
+    - "{{ audio_partition_name }}/Application_Data/NI/Native Instruments"
+    - "{{ audio_partition_name }}/Application_Data/NI/Content"
+
+- name: User Plugin Folder
+  ansible.builtin.file:
+    path:  "{{ lookup('env', 'HOME') }}/Music/Plugins"
+    owner: "{{ lookup('env', 'USER') }}"
+    mode: "0700"
+    state: "directory"
+
+- name: Symlink Audio Partition
+  import_role:
+    name: osx_provisioner.symlinks

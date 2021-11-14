@@ -1,7 +1,0 @@
----
-# tasks/post_install/python.yml
-
-default_python_packages:
-  - cookiecutter
-  - commitizen
-  - poetry

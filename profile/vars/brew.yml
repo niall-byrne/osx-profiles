@@ -1,64 +1,25 @@
 ---
 # osx_provisioner.homebrew-retry
 
-shared_partition_name: "{{ lookup('env', 'SHARED_DISK') }}"
+brew_taps:
+  - "homebrew/cask-versions"
 
-brew_taps: []
 brew_user: "{{ lookup('env', 'USER') }}"
 brew_retries: 3
 
 brew_packages:
-  - awscli
-  - bash
-  - curl
-  - coreutils
-  - dockutil
-  - fswatch
-  - gitleaks
-  - gpg
-  - hadolint
-  - htop
-  - jq
-  - mtr
-  - nmap
-  - openssl
-  - pam-u2f
-  - protobuf
-  - rename
-  - shellcheck
-  - telnet
-  - tig
-  - tmux
-  - wget
-brew_casks:
-  - dbeaver-community
-  - disk-inventory-x
-  - docker
-  - google-chrome  # 1password prefers this to be installed in /Applications
-  - pencil
-  - pycharm-ce
-  - slack
-  - visual-studio-code
-  - windscribe
+  - portaudio
 
-brew_targeted_casks_location: "{{ shared_partition_name }}/Shared Applications"
+brew_casks: []
+
+brew_user_casks: []
+
+brew_targeted_casks_location: "/Applications/Audio"
 brew_targeted_casks:
-  - appcleaner
-  - cyberduck
-  - disk-inventory-x
-  - flux
-  - iterm2
-  - keybase
-  - keepassxc
-  - notion
-  - onyx
-  - pester
-  - shiftit
-  - shuttle
-  - spotify
-  - textmate
-  - the-unarchiver
-  - toggl-track
-  - transmission
-  - windscribe
-  - zoom
+  - ableton-live-lite10
+  - audacity
+  - blackhole-2ch
+  - reaper
+  - musescore
+  - native-access
+  - waves-central

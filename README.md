@@ -1,38 +1,30 @@
 # osx-profiles
 
-### Development:
-- [![osx-profiles](https://github.com/niall-byrne/osx-profiles/actions/workflows/push.yml/badge.svg?branch=development)](https://github.com/niall-byrne/osx-profiles/actions/workflows/push.yml)
-
-### Audio_Production:
-- [![osx-profiles](https://github.com/niall-byrne/osx-profiles/actions/workflows/push.yml/badge.svg?branch=audio)](https://github.com/niall-byrne/osx-profiles/actions/workflows/push.yml)
+### Audio Overlay:
+- [![osx-profiles](https://github.com/niall-byrne/osx-profiles/actions/workflows/push.yml/badge.svg?branch=audio_overlay)](https://github.com/niall-byrne/osx-profiles/actions/workflows/push.yml)
 
 ## Mac Maker Profile
 
-Personal Mac Maker machine profiles.
+Audio Overlay Mac Maker machine profile.
 
 Use [Mac Maker](https://github.com/osx-provisioner/mac_maker) to apply this profile to a Mac that is ready to setup.
 
-## Development
+## Audio Overlay
 
-This is my main development machine profile.
+This branch contains a profile to add music production tools to an existing [development profile](https://github.com/niall-byrne/osx-profiles/tree/development) install.
 
-### Shared Applications
-This profile is part of a multi-boot setup, and uses a dedicated partition to hold "Shared Applications", used by all boot partitions.
+### Audio Partition
+This profile can co-exist with a [development profile](https://github.com/niall-byrne/osx-profiles/tree/development) install, as it segregates the audio content, both in terms of application and media.
 
-Before applying the profile:
-- create an additional AFPS volume on the system drive
-- set the environment variable `SHARED_DISK` to the '/Volumes' mount point of this partition
-
-### Patch Disk
-This profile also uses an external drive to symlink Python Poetry virtualenvs and Docker's raw image data to save space for the boot partitions.
+The audio partition is a specified disk that will contain project work, samples, patches, and all application data for the installed DAW software.
 
 Before applying the profile:
-- create and mount the external partition
-- set the environment variable `PATCH_DISK` to the '/Volumes' mount point of this external partition
+- create an additional APFS volume to house the audio partition
+- set the environment variable `AUDIO_PARTITION` to the '/Volume' mount point of this partition
 
 ### Other Dependencies
 See the standard precheck metadata for all other requirements:
 
 Before applying the profile:
 - set the appropriate [environment variables](./profile/__precheck__/env.yml)
-- review the [release notes](./profile/__precheck__/notes.txt)
+- review the [release notes](./profile/__precheck__/notes.txt)_

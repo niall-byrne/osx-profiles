@@ -1,21 +1,12 @@
 ---
-- name: Configure Ethernet
-  include_tasks: "post_install/ethernet.yml"
+- name: Configure Audio Partition
+  include_tasks: "post_install/audio_partition.yml"
 
 - name: Configure fstab
   include_tasks: "post_install/fstab.yml"
 
-- name: Perform System Preferences
+- name: Perform App Store Software Installs
   include_tasks: "post_install/mas.yml"
 
-- name: Perform Python Customizations
-  include_tasks: "post_install/python.yml"
-
-- name: Perform Dock Content
+- name: Perform Dock Customizations
   include_tasks: "post_install/dock_content.yml"
-
-- name: Configure Preferences
-  include_tasks: "post_install/preferences.yml"
-
-- name: Configure Preferences
-  include_tasks: "post_install/patch_external_disk.yml"
