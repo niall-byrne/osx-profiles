@@ -29,7 +29,7 @@ jobs:
     steps:
 
       - name: Ansible Lint -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Ansible Lint -- Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1
@@ -69,46 +69,48 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Release -- Checkout Repository
+      - name: Create Release -- Checkout Repository
         if: contains(github.ref, '/tags/v')
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-      - name: Release -- Setup Environment
+      - name: Create Release -- Setup Environment
         if: contains(github.ref, '/tags/v')
         run: |
           source ./.github/scripts/setup.sh
-          NEWTAG=${BRANCH_OR_TAG}
-          echo "NEWTAG=${NEWTAG}" >> $GITHUB_ENV
-          echo "{}" > package.json
         env:
           WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-      - name: Release -- Generate Changelog
+      - name: Create Release -- Prepare Content
         if: contains(github.ref, '/tags/v')
-        uses: scottbrenner/generate-changelog-action@v1.3.3
-        id: Changelog
-        env:
-          REPO: ${{ github.repository }}
+        run: |
+          pip install commitizen
 
-      - name: Release -- Create GitHub Release
+      - name: Create Release -- Generate Changelog
+        if: contains(github.ref, '/tags/v')
+        run: |
+          source .github/scripts/changelog.sh
+
+      - name: Create Release -- Create Github Release
         if: contains(github.ref, '/tags/v')
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.NEWTAG }}
-          release_name: Release ${{ env.NEWTAG }}
+          tag_name: ${{ env.BRANCH_OR_TAG }}
+          release_name: Release ${{ env.BRANCH_OR_TAG }}
           body: |
-            ${{ steps.Changelog.outputs.changelog }}
+            ${{ env.CHANGE_LOG }}
           draft: true
           prerelease: false
 
-      - name: Release -- Report Job Status (Success)
+      - name: Create Release -- Report Job Status (Success)
         if: contains(github.ref, '/tags/v')
         run: |
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: automated release has been created:\nhttps://github.com/${USERNAME}/${PROJECT_NAME}/releases"
 
-      - name: Release -- Report Job Status (Failure)
+      - name: Create Release -- Report Job Status (Failure)
         if: failure() && contains(github.ref, '/tags/v')
         run: |
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: automated release generation failed!"
@@ -119,7 +121,7 @@ jobs:
 
     steps:
       - name: Documentation Test -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Documentation Test -- Setup Environment
         run: |
@@ -149,7 +151,7 @@ jobs:
 
     steps:
       - name: Start -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Start -- Setup Environment
         run: |
@@ -173,7 +175,7 @@ jobs:
 
     steps:
       - name: Success -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Success -- Setup Environment
         run: |
@@ -200,7 +202,7 @@ jobs:
 
     steps:
       - name: Security Test -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Security Test -- Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1
@@ -239,7 +241,7 @@ jobs:
 
     steps:
       - name: Workflow Lint -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Workflow Lint -- Setup Environment
         run: |
