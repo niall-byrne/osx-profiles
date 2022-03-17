@@ -19,6 +19,7 @@ brew_targeted_casks:
   - ableton-live-lite10
   - audacity
   - blackhole-2ch
+  - polyphone
   - reaper
   - musescore
   - native-access
