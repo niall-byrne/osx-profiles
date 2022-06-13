@@ -1,0 +1,6 @@
+---
+- name: Change user shell to BASH
+  become: True
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/bash

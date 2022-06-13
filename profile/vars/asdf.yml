@@ -1,6 +1,7 @@
 ---
 # osx_provisioner.asdf
 
+asdf_version: "v0.10.2"
 asdf_user: "{{ lookup('env', 'USER') }}"
 asdf_user_home: "{{ lookup('env', 'HOME') }}"
 asdf_homebrew_retries: 3
@@ -13,8 +14,8 @@ asdf_plugins:
   - name: "helm"
     repository: ""
     versions:
-      - 3.5.4
-    global: 3.5.4
+      - 3.9.0
+    global: 3.9.0
   - name: "kubectl"
     repository: ""
     versions:
@@ -28,26 +29,20 @@ asdf_plugins:
   - name: "python"
     repository: ""
     versions:
-      - 2.7.18
-      - 3.7.12
-      - 3.8.12
-    global: 3.8.12
-  - name: "ruby"
-    repository: ""
-    versions:
-      - 2.4.10
-    global: 2.4.10
+      - 3.7.13
+      - 3.8.13
+      - 3.9.13
+    global: 3.8.13
   - name: "nodejs"
+    environment_variables:
+      PATH: "{{ asdf_user_home }}/.asdf/shims:{{ ansible_env.PATH }}"
     repository: ""
     versions:
-      - 14.18.1
-    global: 14.18.1
+      - 16.15.1
+    global: 16.15.1
   - name: "terraform"
     repository: ""
     versions:
-      - 0.11.14
-      - 0.12.29
-      - 0.13.0
-      - 0.14.0
       - 1.0.10
+      - 1.2.0
     global: 1.0.10

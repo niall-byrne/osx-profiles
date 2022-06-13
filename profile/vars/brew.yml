@@ -1,7 +1,7 @@
 ---
 # osx_provisioner.homebrew-retry
 
-shared_partition_name: "{{ lookup('env', 'SHARED_DISK') }}"
+brew_prefix: "{{ (ansible_machine == 'arm64') | ternary('/opt/homebrew', '/usr/local') }}"
 
 brew_taps: []
 brew_user: "{{ lookup('env', 'USER') }}"
@@ -12,7 +12,6 @@ brew_packages:
   - bash
   - curl
   - coreutils
-  - dockutil
   - fswatch
   - gitleaks
   - gpg
@@ -31,34 +30,28 @@ brew_packages:
   - tmux
   - wget
 brew_casks:
-  - dbeaver-community
-  - disk-inventory-x
-  - docker
-  - google-chrome  # 1password prefers this to be installed in /Applications
-  - pencil
-  - pycharm-ce
-  - slack
-  - visual-studio-code
-  - windscribe
-
-brew_targeted_casks_location: "{{ shared_partition_name }}/Shared Applications"
-brew_targeted_casks:
   - appcleaner
   - cyberduck
+  - dbeaver-community
   - disk-inventory-x
+  - hpedrorodrigues/tools/dockutil
+  - docker
   - flux
+  - google-chrome
   - iterm2
-  - keybase
   - keepassxc
   - notion
   - onyx
+  - pencil
   - pester
+  - pycharm-ce
   - shiftit
   - shuttle
+  - slack
   - spotify
   - textmate
   - the-unarchiver
   - toggl-track
   - transmission
-  - windscribe
+  - visual-studio-code
   - zoom

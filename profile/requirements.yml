@@ -7,17 +7,15 @@ roles:
   - src: osx_provisioner.asdf
     version: v0.2.2
   - src: osx_provisioner.clamav
-    version: v0.2.1
+    version: v0.3.0
   - src: osx_provisioner.downloader
     version: v0.1.2
   - src: osx_provisioner.homebrew_retry
     version: v0.3.0
   - src: osx_provisioner.homeshick
     version: v0.1.3
-  - src: osx_provisioner.jumpcloud
-    version: v0.1.2
   - src: osx_provisioner.symlinks
     version: v0.1.2
 collections:
   - name: geerlingguy.mac
-    version: 1.1.2
+    version: 1.4.0

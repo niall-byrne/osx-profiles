@@ -1,7 +1,4 @@
 ---
-- name: Configure Ethernet
-  include_tasks: "post_install/ethernet.yml"
-
 - name: Configure fstab
   include_tasks: "post_install/fstab.yml"
 
@@ -17,5 +14,5 @@
 - name: Configure Preferences
   include_tasks: "post_install/preferences.yml"
 
-- name: Configure Preferences
-  include_tasks: "post_install/patch_external_disk.yml"
+- name: Configure Shell
+  include_tasks: "post_install/shell.yml"

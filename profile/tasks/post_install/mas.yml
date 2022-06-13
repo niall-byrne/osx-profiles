@@ -26,4 +26,7 @@
 - name: Install Apple Store Apps on Compatible Systems
   include_role:
     name: "geerlingguy.mac.mas"
+    apply:
+      environment:
+        PATH: "{{ brew_prefix }}/bin:{{ ansible_env.PATH }}"
   when: ansible_distribution_version is version('10.14', '>')

@@ -18,9 +18,8 @@
     - elliotweiser.osx-command-line-tools
     - geerlingguy.mac.homebrew
     - osx_provisioner.homebrew_retry
-    - osx_provisioner.clamav
     - osx_provisioner.homeshick
-    - osx_provisioner.jumpcloud
+    - osx_provisioner.clamav
     - osx_provisioner.asdf
     - osx_provisioner.symlinks
     - osx_provisioner.downloader
